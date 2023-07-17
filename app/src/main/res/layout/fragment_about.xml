@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:text="This is the help menu!" />
+        android:text="This is the About menu!" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,11 +20,6 @@
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             android:text="cancel" />
-
-        <Button
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            android:text="add" />
 
     </LinearLayout>
 
