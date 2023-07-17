@@ -12,7 +12,6 @@ import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link Menu#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class Menu extends Fragment {
@@ -34,19 +33,8 @@ public class Menu extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
      * @return A new instance of fragment Menu.
      */
-    // TODO: Rename and change types and number of parameters
-    public static Menu newInstance(String param1, String param2) {
-        Menu fragment = new Menu();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -70,47 +58,17 @@ public class Menu extends Fragment {
         Button btnViewCalculations = view.findViewById(R.id.btnCalculations);
         Button btnHelp = view.findViewById(R.id.btnHelp);
         Button btnAbout = view.findViewById(R.id.btnAbout);
-        btnAddExpenses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_menu2_to_addExpenses);
-            }
-        });
+        btnAddExpenses.setOnClickListener(view1 -> Navigation.findNavController(view1).navigate(R.id.action_menu2_to_addExpenses));
 
-        btnAddSalary.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_menu2_to_addSalary);
-            }
-        });
+        btnAddSalary.setOnClickListener(view12 -> Navigation.findNavController(view12).navigate(R.id.action_menu2_to_addSalary));
 
-        btnViewExpenses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_menu2_to_showExpensesTable);
-            }
-        });
+        btnViewExpenses.setOnClickListener(view13 -> Navigation.findNavController(view13).navigate(R.id.action_menu2_to_showExpensesTable));
 
-        btnViewCalculations.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_menu2_to_viewCalculations);
-            }
-        });
+        btnViewCalculations.setOnClickListener(view14 -> Navigation.findNavController(view14).navigate(R.id.action_menu2_to_viewCalculations));
 
-        btnHelp.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_menu2_to_help);
-            }
-        });
+        btnHelp.setOnClickListener(view15 -> Navigation.findNavController(view15).navigate(R.id.action_menu2_to_help));
 
-        btnAbout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigate(R.id.action_menu2_to_about);
-            }
-        });
+        btnAbout.setOnClickListener(view16 -> Navigation.findNavController(view16).navigate(R.id.action_menu2_to_about));
 
         return view;
     }
