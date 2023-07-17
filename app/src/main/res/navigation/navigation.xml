@@ -12,10 +12,34 @@
         <action
             android:id="@+id/action_menu2_to_addExpenses"
             app:destination="@id/addExpenses" />
+        <action
+            android:id="@+id/action_menu2_to_addSalary"
+            app:destination="@id/addSalary" />
+        <action
+            android:id="@+id/action_menu2_to_showExpensesTable"
+            app:destination="@id/showExpensesTable" />
+        <action
+            android:id="@+id/action_menu2_to_viewCalculations"
+            app:destination="@id/viewCalculations" />
     </fragment>
     <fragment
         android:id="@+id/addExpenses"
         android:name="com.example.myapp10.AddExpenses"
         android:label="fragment_add_expenses"
         tools:layout="@layout/fragment_add_expenses" />
+    <fragment
+        android:id="@+id/addSalary"
+        android:name="com.example.myapp10.AddSalary"
+        android:label="fragment_add_salary"
+        tools:layout="@layout/fragment_add_salary" />
+    <fragment
+        android:id="@+id/showExpensesTable"
+        android:name="com.example.myapp10.ShowExpensesTable"
+        android:label="fragment_show_expenses_table"
+        tools:layout="@layout/fragment_show_expenses_table" />
+    <fragment
+        android:id="@+id/viewCalculations"
+        android:name="com.example.myapp10.ViewCalculations"
+        android:label="fragment_view_calculations"
+        tools:layout="@layout/fragment_view_calculations" />
 </navigation>

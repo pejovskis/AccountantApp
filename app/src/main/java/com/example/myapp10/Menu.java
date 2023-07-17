@@ -65,10 +65,34 @@ public class Menu extends Fragment {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
 
         Button btnAddExpenses = view.findViewById(R.id.btnAddExpenses);
+        Button btnAddSalary = view.findViewById(R.id.btnAddSalary);
+        Button btnViewExpenses = view.findViewById(R.id.btnViewExpenses);
+        Button btnViewCalculations = view.findViewById(R.id.btnCalculations);
         btnAddExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_menu2_to_addExpenses);
+            }
+        });
+
+        btnAddSalary.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_menu2_to_addSalary);
+            }
+        });
+
+        btnViewExpenses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_menu2_to_showExpensesTable);
+            }
+        });
+
+        btnViewCalculations.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_menu2_to_viewCalculations);
             }
         });
 

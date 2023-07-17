@@ -26,12 +26,6 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btnViewSalaries"
-        android:layout_width="match_parent"
-        android:text="View Salaries"
-        android:layout_height="wrap_content" />
-
-    <Button
         android:id="@+id/btnCalculations"
         android:layout_width="match_parent"
         android:text="Calculations"

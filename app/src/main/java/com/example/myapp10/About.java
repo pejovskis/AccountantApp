@@ -3,19 +3,17 @@ package com.example.myapp10;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
-import androidx.navigation.Navigation;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AddSalary#newInstance} factory method to
+ * Use the {@link About#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddSalary extends Fragment {
+public class About extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +24,7 @@ public class AddSalary extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public AddSalary() {
+    public About() {
         // Required empty public constructor
     }
 
@@ -36,11 +34,11 @@ public class AddSalary extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment AddSalary.
+     * @return A new instance of fragment About.
      */
     // TODO: Rename and change types and number of parameters
-    public static AddSalary newInstance(String param1, String param2) {
-        AddSalary fragment = new AddSalary();
+    public static About newInstance(String param1, String param2) {
+        About fragment = new About();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,17 +59,6 @@ public class AddSalary extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
-        View view = inflater.inflate(R.layout.fragment_add_salary, container, false);
-
-        Button btnCancel = view.findViewById(R.id.btnCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigateUp();
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_about, container, false);
     }
 }
