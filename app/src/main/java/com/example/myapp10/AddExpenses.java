@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -64,13 +66,24 @@ public class AddExpenses extends Fragment {
         View view = inflater.inflate(R.layout.fragment_add_expenses, container, false);
 
         Button btnCancel = view.findViewById(R.id.btnCancel);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Navigation.findNavController(view).navigateUp();
-            }
-        });
+        Button btnAddExpenses = view.findViewById(R.id.btnAddExpenses);
+        btnCancel.setOnClickListener(view2 -> Navigation.findNavController(view).navigateUp());
+        btnAddExpenses.setOnClickListener(view3 -> addExpense(view));
+
 
         return view;
+    }
+
+    public void addExpense(View view) {
+
+        EditText inWhere = view.findViewById(R.id.inWhere);
+        EditText inCategory = view.findViewById(R.id.inCategory);
+        EditText inDate = view.findViewById(R.id.inDate);
+        EditText inPrice = view.findViewById(R.id.inPrice);
+
+        TextView consoleOutput = view.findViewById(R.id.consoleOutput);
+        consoleOutput.setText(inWhere.getText() + " " + inCategory.getText() + " " + inDate.getText() + " " + inPrice.getText());
+
+
     }
 }

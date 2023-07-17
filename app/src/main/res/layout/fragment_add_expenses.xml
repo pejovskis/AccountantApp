@@ -13,6 +13,7 @@
         android:text="Where" />
 
     <EditText
+        android:id="@+id/inWhere"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:inputType="text" />
@@ -23,6 +24,7 @@
         android:text="Category" />
 
     <EditText
+        android:id="@+id/inCategory"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:spinnerMode="dropdown" />
@@ -60,6 +62,7 @@
         android:text="Date" />
 
     <EditText
+        android:id="@+id/inDate"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:inputType="date" />
@@ -70,6 +73,7 @@
         android:text="Price" />
 
     <EditText
+        android:id="@+id/inPrice"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:inputType="numberDecimal" />
@@ -92,6 +96,12 @@
             android:text="add" />
 
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/consoleOutput"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Console:" />
 
 
 </LinearLayout>
