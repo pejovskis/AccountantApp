@@ -68,6 +68,8 @@ public class Menu extends Fragment {
         Button btnAddSalary = view.findViewById(R.id.btnAddSalary);
         Button btnViewExpenses = view.findViewById(R.id.btnViewExpenses);
         Button btnViewCalculations = view.findViewById(R.id.btnCalculations);
+        Button btnHelp = view.findViewById(R.id.btnHelp);
+        Button btnAbout = view.findViewById(R.id.btnAbout);
         btnAddExpenses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -93,6 +95,20 @@ public class Menu extends Fragment {
             @Override
             public void onClick(View view) {
                 Navigation.findNavController(view).navigate(R.id.action_menu2_to_viewCalculations);
+            }
+        });
+
+        btnHelp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_menu2_to_help);
+            }
+        });
+
+        btnAbout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Navigation.findNavController(view).navigate(R.id.action_menu2_to_about);
             }
         });
 

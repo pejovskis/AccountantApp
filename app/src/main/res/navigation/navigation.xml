@@ -21,6 +21,12 @@
         <action
             android:id="@+id/action_menu2_to_viewCalculations"
             app:destination="@id/viewCalculations" />
+        <action
+            android:id="@+id/action_menu2_to_help"
+            app:destination="@id/help" />
+        <action
+            android:id="@+id/action_menu2_to_about"
+            app:destination="@id/about" />
     </fragment>
     <fragment
         android:id="@+id/addExpenses"
@@ -42,4 +48,14 @@
         android:name="com.example.myapp10.ViewCalculations"
         android:label="fragment_view_calculations"
         tools:layout="@layout/fragment_view_calculations" />
+    <fragment
+        android:id="@+id/about"
+        android:name="com.example.myapp10.About"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
+    <fragment
+        android:id="@+id/help"
+        android:name="com.example.myapp10.Help"
+        android:label="fragment_help"
+        tools:layout="@layout/fragment_help" />
 </navigation>
