@@ -14,15 +14,15 @@
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btnAddSalary"
+        android:id="@+id/btnViewExpenses"
         android:layout_width="match_parent"
-        android:text="Add Salary"
+        android:text="View Expenses"
         android:layout_height="wrap_content" />
 
     <Button
-        android:id="@+id/btnViewExpenses"
+        android:id="@+id/btnAddSalary"
         android:layout_width="match_parent"
-        android:text="View Salary"
+        android:text="Add Salary"
         android:layout_height="wrap_content" />
 
     <Button

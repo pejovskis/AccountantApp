@@ -1,5 +1,6 @@
 package com.example.myapp10;
 
+import android.content.ContentValues;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,8 +10,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+
+import java.util.Calendar;
+import java.util.Date;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -75,15 +82,49 @@ public class AddExpenses extends Fragment {
     }
 
     public void addExpense(View view) {
-
+        int id = 2;
         EditText inWhere = view.findViewById(R.id.inWhere);
         EditText inCategory = view.findViewById(R.id.inCategory);
-        EditText inDate = view.findViewById(R.id.inDate);
         EditText inPrice = view.findViewById(R.id.inPrice);
 
-        TextView consoleOutput = view.findViewById(R.id.consoleOutput);
-        consoleOutput.setText(inWhere.getText() + " " + inCategory.getText() + " " + inDate.getText() + " " + inPrice.getText());
+        // Radio Btn
+        RadioGroup inRadioGroup = view.findViewById(R.id.radioGroupOptions);
+        int selectedRadioBtnId = inRadioGroup.getCheckedRadioButtonId();
+        String inEssentials = "not provided";
+        if (selectedRadioBtnId != -1) {
+            RadioButton selectedRadioBtn = view.findViewById(selectedRadioBtnId);
+            if (selectedRadioBtn != null) {
+                inEssentials = selectedRadioBtn.getText().toString();
+            }
+        }
 
+        // Date Picker
+        DatePicker datePicker = view.findViewById(R.id.inDate);
+        int year = datePicker.getYear();
+        int month = datePicker.getMonth();
+        int dayOfMonth = datePicker.getDayOfMonth();
+        String dateIn = dayOfMonth + "." + (month + 1) + "." + year; // Month is zero-based, so add 1
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(year, month, dayOfMonth);
+        Date selectedTime = calendar.getTime();
+
+        TextView consoleOutput = view.findViewById(R.id.consoleOutput);
+
+        consoleOutput.setText(inWhere.getText() + " " + inCategory.getText() + " " + dateIn + " " + inPrice.getText() + " " + inEssentials);
+
+        // Expense Object generate
+        Expense newExpense = new Expense(id, inWhere.getText().toString(), inCategory.getText().toString(), inEssentials, selectedTime, Integer.parseInt(inPrice.getText().toString()));
+
+        //Insert to DB
+        // Insert data
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("where", "Grocery Store");
+        contentValues.put("category", "Food");
+        contentValues.put("essentials", "Yes");
+        contentValues.put("date", System.currentTimeMillis()); // or use a Date object
+        contentValues.put("price", 100.0);
+        long newRowId = db.insert("expenses", null, contentValues);
 
     }
+
 }
