@@ -1,11 +1,13 @@
 package com.example.myapp10;
 
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +76,9 @@ public class ShowExpensesTable extends Fragment {
         View view = inflater.inflate(R.layout.fragment_show_expenses_table, container, false);
 
         Button btnCancel = view.findViewById(R.id.btnCancel);
+
+        TableLayout tableLayoutExpenses = view.findViewById(R.id.tableLayoutExpenses);
+        //addTableHeaders(tableLayoutExpenses);
         btnCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -87,22 +92,56 @@ public class ShowExpensesTable extends Fragment {
         return view;
     }
 
+//    private void addTableHeaders(TableLayout tableLayout) {
+//        TableRow headerRow = new TableRow(requireContext());
+//
+//        // Add header TextViews
+//        headerRow.addView(createHeaderTextView("Where"));
+//        headerRow.addView(createHeaderTextView("Essentials"));
+//        headerRow.addView(createHeaderTextView("Category"));
+//        headerRow.addView(createHeaderTextView("Date"));
+//        headerRow.addView(createHeaderTextView("Price"));
+//
+//        // Add the header row to the table layout
+//        tableLayout.addView(headerRow);
+//    }
+
+    private TextView createHeaderTextView(String text) {
+        TextView textView = new TextView(requireContext());
+        textView.setText(text);
+        textView.setLayoutParams(new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        ));
+        textView.setBackgroundResource(R.color.gray); // Add the gray background color if desired
+        textView.setPadding(3, 3, 3, 3); // Add padding if desired
+        textView.setTextColor(Color.BLACK); // Add text color if desired
+        textView.setGravity(Gravity.CENTER); // Center the text in the TextView
+        return textView;
+    }
+
     private void retrieveAndDisplayExpenses(View view) {
         DatabaseReference expensesRef = FirebaseDatabase.getInstance().getReference("expenses");
-        expensesRef.addValueEventListener(new ValueEventListener() {
+        expensesRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // Clear any previous data from the table
                 TableLayout tableLayoutExpenses = view.findViewById(R.id.tableLayoutExpenses);
-                tableLayoutExpenses.removeAllViews();
+                //tableLayoutExpenses.removeAllViews();
 
-                // Loop through the children of the "expenses" node
-                for (DataSnapshot expenseSnapshot : dataSnapshot.getChildren()) {
-                    // Retrieve the expense object from the snapshot
-                    Expense expense = expenseSnapshot.getValue(Expense.class);
+                if (dataSnapshot.exists()) {
+                    // If data exists, loop through the children of the "expenses" node
+                    for (DataSnapshot expenseSnapshot : dataSnapshot.getChildren()) {
+                        // Retrieve the expense object from the snapshot
+                        Expense expense = expenseSnapshot.getValue(Expense.class);
 
-                    // Add the expense data to the table
-                    addExpenseToTable(tableLayoutExpenses, expense);
+                        // Add the expense data to the table
+                        addExpenseToTable(tableLayoutExpenses, expense);
+                    }
+                } else {
+                    // If no data exists, add the table headers and show a message
+                   // addTableHeaders(tableLayoutExpenses);
+                    addNoDataMessage(tableLayoutExpenses);
                 }
             }
 
@@ -111,6 +150,25 @@ public class ShowExpensesTable extends Fragment {
                 // Handle any errors that may occur while retrieving data
             }
         });
+    }
+
+    private void addNoDataMessage(TableLayout tableLayout) {
+        TableRow row = new TableRow(requireContext());
+
+        TextView tvNoData = createTextView("No expenses found.");
+        tvNoData.setGravity(Gravity.CENTER);
+        tvNoData.setTextColor(Color.RED);
+
+        TableRow.LayoutParams layoutParams = new TableRow.LayoutParams(
+                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        );
+        layoutParams.span = 6; // Span the message across all columns
+
+        row.addView(tvNoData, layoutParams);
+
+        // Add the TableRow to the TableLayout
+        tableLayout.addView(row);
     }
 
     private void addExpenseToTable(TableLayout tableLayout, Expense expense) {
