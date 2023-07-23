@@ -85,7 +85,32 @@ public class AddExpenses extends Fragment {
     }
 
     public void addExpense(View view) {
-        int id = 2;
+
+        TextView consoleOutput = view.findViewById(R.id.consoleOutput);
+
+        Expense expense = getNewExpense(view);
+        consoleOutput.setText("Id: " + expense.getId() +
+                "\nWhere: " + expense.getWhere() +
+                "\nCategory: " + expense.getCategory() +
+                "\nEssentials: " + expense.getEssentials() +
+                "\nDate: " + expense.getDate() +
+                "\nPrice: " + expense.getPrice());
+
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dbAdd = database.getReference(expense.getId());
+
+        dbAdd.setValue("Id: " + expense.getId() +
+        "\nWhere: " + expense.getWhere() +
+                "\nCategory: " + expense.getCategory() +
+                "\nEssentials: " + expense.getEssentials() +
+                "\nDate: " + expense.getDate() +
+                "\nPrice: " + expense.getPrice());
+
+    }
+
+    public Expense getNewExpense(View view) {
+
         EditText inWhere = view.findViewById(R.id.inWhere);
         EditText inCategory = view.findViewById(R.id.inCategory);
         EditText inPrice = view.findViewById(R.id.inPrice);
@@ -111,16 +136,15 @@ public class AddExpenses extends Fragment {
         calendar.set(year, month, dayOfMonth);
         Date selectedTime = calendar.getTime();
 
-        TextView consoleOutput = view.findViewById(R.id.consoleOutput);
+        String whereText = inWhere.getText().toString();
+        String categoryText = inCategory.getText().toString();
+        String dateText = dateIn;
+        String essentialsText = inEssentials;
+        String priceText = inPrice.getText().toString();
 
-        consoleOutput.setText(inWhere.getText() + " " + inCategory.getText() + " " + dateIn + " " + inPrice.getText() + " " + inEssentials);
+        Expense newExpense = new Expense(whereText, categoryText, essentialsText, dateText, priceText);
 
-        // Write a message to the database
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("message");
-
-        myRef.setValue("Hello, World!");
-
+        return newExpense;
 
     }
 
