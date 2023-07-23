@@ -98,14 +98,19 @@ public class AddExpenses extends Fragment {
 
         // Write a message to the database
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dbAdd = database.getReference(expense.getId());
+        //DatabaseReference dbAdd = database.getReference(expense.getId());
+        DatabaseReference expensesRef = database.getReference("expenses");
 
-        dbAdd.setValue("Id: " + expense.getId() +
-        "\nWhere: " + expense.getWhere() +
-                "\nCategory: " + expense.getCategory() +
-                "\nEssentials: " + expense.getEssentials() +
-                "\nDate: " + expense.getDate() +
-                "\nPrice: " + expense.getPrice());
+        DatabaseReference newExpenseRef = expensesRef.push();
+
+        newExpenseRef.setValue(expense);
+
+//        expensesRef.setValue("Id: " + expense.getId() +
+//        "\nWhere: " + expense.getWhere() +
+//                "\nCategory: " + expense.getCategory() +
+//                "\nEssentials: " + expense.getEssentials() +
+//                "\nDate: " + expense.getDate() +
+//                "\nPrice: " + expense.getPrice());
 
     }
 

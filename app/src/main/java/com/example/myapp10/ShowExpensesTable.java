@@ -5,10 +5,20 @@ import android.os.Bundle;
 import androidx.fragment.app.Fragment;
 import androidx.navigation.Navigation;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -71,7 +81,69 @@ public class ShowExpensesTable extends Fragment {
             }
         });
 
+        // Retrieve and display the expenses
+        retrieveAndDisplayExpenses(view);
 
         return view;
+    }
+
+    private void retrieveAndDisplayExpenses(View view) {
+        DatabaseReference expensesRef = FirebaseDatabase.getInstance().getReference("expenses");
+        expensesRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Clear any previous data from the table
+                TableLayout tableLayoutExpenses = view.findViewById(R.id.tableLayoutExpenses);
+                tableLayoutExpenses.removeAllViews();
+
+                // Loop through the children of the "expenses" node
+                for (DataSnapshot expenseSnapshot : dataSnapshot.getChildren()) {
+                    // Retrieve the expense object from the snapshot
+                    Expense expense = expenseSnapshot.getValue(Expense.class);
+
+                    // Add the expense data to the table
+                    addExpenseToTable(tableLayoutExpenses, expense);
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle any errors that may occur while retrieving data
+            }
+        });
+    }
+
+    private void addExpenseToTable(TableLayout tableLayout, Expense expense) {
+        // Create a new TableRow
+        TableRow row = new TableRow(requireContext());
+
+        // Create TextViews to display each attribute of the expense
+        TextView tvId = createTextView(expense.getId());
+        TextView tvWhere = createTextView(expense.getWhere());
+        TextView tvEssentials = createTextView(expense.getEssentials());
+        TextView tvCategory = createTextView(expense.getCategory());
+        TextView tvDate = createTextView(expense.getDate());
+        TextView tvPrice = createTextView(expense.getPrice());
+
+        // Add TextViews to the TableRow
+        row.addView(tvId);
+        row.addView(tvWhere);
+        row.addView(tvEssentials);
+        row.addView(tvCategory);
+        row.addView(tvDate);
+        row.addView(tvPrice);
+
+        // Add the TableRow to the TableLayout
+        tableLayout.addView(row);
+    }
+
+    private TextView createTextView(String text) {
+        TextView textView = new TextView(requireContext());
+        textView.setText(text);
+        textView.setLayoutParams(new TableRow.LayoutParams(
+                TableRow.LayoutParams.WRAP_CONTENT,
+                TableRow.LayoutParams.WRAP_CONTENT
+        ));
+        return textView;
     }
 }

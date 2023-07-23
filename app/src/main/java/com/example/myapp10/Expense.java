@@ -14,6 +14,8 @@ public class Expense {
     private String date;
     private String price;
 
+    public Expense(){}
+
     public Expense(String where, String category, String essentials, String date, String price) {
         this.where = where;
         this.category = category;
