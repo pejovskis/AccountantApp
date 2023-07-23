@@ -19,6 +19,9 @@ import android.widget.TextView;
 import java.util.Calendar;
 import java.util.Date;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AddExpenses#newInstance} factory method to
@@ -112,18 +115,12 @@ public class AddExpenses extends Fragment {
 
         consoleOutput.setText(inWhere.getText() + " " + inCategory.getText() + " " + dateIn + " " + inPrice.getText() + " " + inEssentials);
 
-        // Expense Object generate
-        Expense newExpense = new Expense(id, inWhere.getText().toString(), inCategory.getText().toString(), inEssentials, selectedTime, Integer.parseInt(inPrice.getText().toString()));
+        // Write a message to the database
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("message");
 
-        //Insert to DB
-        // Insert data
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("where", "Grocery Store");
-        contentValues.put("category", "Food");
-        contentValues.put("essentials", "Yes");
-        contentValues.put("date", System.currentTimeMillis()); // or use a Date object
-        contentValues.put("price", 100.0);
-        //long newRowId = db.insert("expenses", null, contentValues);
+        myRef.setValue("Hello, World!");
+
 
     }
 
