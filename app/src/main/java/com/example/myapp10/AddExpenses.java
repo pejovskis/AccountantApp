@@ -123,7 +123,7 @@ public class AddExpenses extends Fragment {
         contentValues.put("essentials", "Yes");
         contentValues.put("date", System.currentTimeMillis()); // or use a Date object
         contentValues.put("price", 100.0);
-        long newRowId = db.insert("expenses", null, contentValues);
+        //long newRowId = db.insert("expenses", null, contentValues);
 
     }
 

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "661537121018",
+    "firebase_url": "https://homefinance-7587d-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "homefinance-7587d",
+    "storage_bucket": "homefinance-7587d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:661537121018:android:8feedba6945eb1150bdf43",
+        "android_client_info": {
+          "package_name": "com.example.myapp10"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "661537121018-jdm68e2cievha9uj0j3h5kb664ki3agd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTdI1VtsX8YaN9QzAoqaVhAATRcPt5zxU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "661537121018-jdm68e2cievha9uj0j3h5kb664ki3agd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
