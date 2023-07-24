@@ -89,8 +89,7 @@ public class AddExpenses extends Fragment {
         TextView consoleOutput = view.findViewById(R.id.consoleOutput);
 
         Expense expense = getNewExpense(view);
-        consoleOutput.setText("Id: " + expense.getId() +
-                "\nWhere: " + expense.getWhere() +
+        consoleOutput.setText("\nWhere: " + expense.getWhere() +
                 "\nCategory: " + expense.getCategory() +
                 "\nEssentials: " + expense.getEssentials() +
                 "\nDate: " + expense.getDate() +

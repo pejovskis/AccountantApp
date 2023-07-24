@@ -7,7 +7,6 @@ import java.util.Date;
 public class Expense {
 
     //fields
-    private String id;
     private String where;
     private String category;
     private String essentials;
@@ -22,22 +21,7 @@ public class Expense {
         this.essentials = essentials;
         this.date = date;
         this.price = price;
-        setId();
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId() {
-        String idGenerated;
-        String dateFiltered = getDate().replace(".", "");
-
-        idGenerated = getWhere().substring(0, 1) + getCategory().substring(0, 1) + getEssentials() + dateFiltered + getPrice();
-
-        this.id = idGenerated;
-    }
-
     public String getWhere() {
         return where;
     }

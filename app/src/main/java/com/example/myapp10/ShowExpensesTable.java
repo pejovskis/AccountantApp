@@ -91,21 +91,6 @@ public class ShowExpensesTable extends Fragment {
 
         return view;
     }
-
-//    private void addTableHeaders(TableLayout tableLayout) {
-//        TableRow headerRow = new TableRow(requireContext());
-//
-//        // Add header TextViews
-//        headerRow.addView(createHeaderTextView("Where"));
-//        headerRow.addView(createHeaderTextView("Essentials"));
-//        headerRow.addView(createHeaderTextView("Category"));
-//        headerRow.addView(createHeaderTextView("Date"));
-//        headerRow.addView(createHeaderTextView("Price"));
-//
-//        // Add the header row to the table layout
-//        tableLayout.addView(headerRow);
-//    }
-
     private TextView createHeaderTextView(String text) {
         TextView textView = new TextView(requireContext());
         textView.setText(text);
@@ -176,15 +161,20 @@ public class ShowExpensesTable extends Fragment {
         TableRow row = new TableRow(requireContext());
 
         // Create TextViews to display each attribute of the expense
-        TextView tvId = createTextView(expense.getId());
         TextView tvWhere = createTextView(expense.getWhere());
         TextView tvEssentials = createTextView(expense.getEssentials());
         TextView tvCategory = createTextView(expense.getCategory());
         TextView tvDate = createTextView(expense.getDate());
         TextView tvPrice = createTextView(expense.getPrice());
 
+        // Center the graviy for each row :(
+        tvWhere.setGravity(Gravity.CENTER);
+        tvEssentials.setGravity(Gravity.CENTER);
+        tvCategory.setGravity(Gravity.CENTER);
+        tvDate.setGravity(Gravity.CENTER);
+        tvPrice.setGravity(Gravity.CENTER);
+
         // Add TextViews to the TableRow
-        row.addView(tvId);
         row.addView(tvWhere);
         row.addView(tvEssentials);
         row.addView(tvCategory);
